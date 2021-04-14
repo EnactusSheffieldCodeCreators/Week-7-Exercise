@@ -27,6 +27,8 @@
             {% endfor %}
         </table>
         <input type="submit" value="Make Move">
+        <input type="hidden" name="current-piece" value="{{ current_piece }}">
+        <input type="hidden" name="board" value="{{ board }}">
     </form>
 </body>
 

@@ -3,13 +3,16 @@ from flask import Flask
 app = Flask(__name__, template_folder='views')
 
 # Other useful flask functions
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, session
 
 # Home Route
 @app.route("/", methods=["GET"])
 def render_blank_grid():
     board = generate_blank_board()
-    session['board'] = board
+    return render_template("board.html", board=board, current_piece="x")
+
+@app.route("/", methods=["POST"])
+def play_move():
     return render_template("board.html", board=board, current_piece="x")
 
 # Helper Functions
