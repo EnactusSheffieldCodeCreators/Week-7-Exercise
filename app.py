@@ -1,3 +1,6 @@
+#AST to help with strings.
+import ast
+
 # Flask server setup
 from flask import Flask
 app = Flask(__name__, template_folder='views')
@@ -13,7 +16,23 @@ def render_blank_grid():
 
 @app.route("/", methods=["POST"])
 def play_move():
-    return render_template("board.html", board=board, current_piece="x")
+    location = list(request.form.get("place-selection"))
+    coords = [int(location[0]), int(location[1])]
+    app.logger.debug(request.form.get("place-selection"))
+    board = ast.literal_eval(request.form.get("board"))
+    piece = request.form.get("current-piece")
+
+    # Place piece
+    board[coords[0]][coords[1]] = piece
+
+    # Flip piece
+    if piece == "x":
+        piece = "o"
+    else:
+        piece = "x"
+    
+    # Re render the page
+    return render_template("board.html", board=board, current_piece=piece)
 
 # Helper Functions
 def generate_blank_board():

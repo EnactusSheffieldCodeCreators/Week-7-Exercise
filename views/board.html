@@ -17,9 +17,9 @@
                     {% for j in range(board[i]|length): %}
                         <td>
                             {% if board[i][j] == None: %}
-                                <input type="radio" id="{{ i }}{{ j }}" name="place-selection">
+                                <input type="radio" value="{{ i }}{{ j }}" name="place-selection">
                             {% else %}
-                                <div> {{board[i][j]}} </div>
+                                <div> {{board[i][j]}}</div>
                             {% endif %}
                         </td>
                     {% endfor %}
