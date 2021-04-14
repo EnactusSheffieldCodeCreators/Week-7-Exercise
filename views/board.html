@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Noughts and Crosses</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h2>Select where to place "{{current_piece}}"</h2>
+    <form action="/" method="POST">
+        <table>
+            {% for i in range(board|length): %}
+                <tr>
+                    {% for j in range(board[i]|length): %}
+                        <td>
+                            {% if board[i][j] == None: %}
+                                <input type="radio" id="{{ i }}{{ j }}" name="place-selection">
+                            {% else %}
+                                <div> {{board[i][j]}} </div>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Make Move">
+    </form>
+</body>
+
+</html>
